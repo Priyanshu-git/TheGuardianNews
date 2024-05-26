@@ -21,15 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.example.android.newsfeed.fragment;
+package com.example.android.newsfeed.fragment
 
 /**
- * The HomeFragment is a {@link BaseArticlesFragment} subclass that
+ * The HomeFragment is a [BaseArticlesFragment] subclass that
  * reuses methods of the parent class
  */
-public class HomeFragment extends BaseArticlesFragment {
-
-    public static final String LOG_TAG = HomeFragment.class.getName();
-
+public class HomeFragment : BaseArticlesFragment() {
+    val LOG_TAG: String = HomeFragment::class.java.name
 }
