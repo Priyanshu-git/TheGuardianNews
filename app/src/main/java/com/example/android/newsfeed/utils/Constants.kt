@@ -21,84 +21,100 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.example.android.newsfeed.utils;
+package com.example.android.newsfeed.utils
 
 /**
  * Store Constants for the NewsFeed app.
  */
-
-public class Constants {
+object Constants {
+    /**
+     * Extract the key associated with the JSONObject
+     */
+    const val JSON_KEY_RESPONSE: String = "response"
+    const val JSON_KEY_RESULTS: String = "results"
+    const val JSON_KEY_WEB_TITLE: String = "webTitle"
+    const val JSON_KEY_SECTION_NAME: String = "sectionName"
+    const val JSON_KEY_WEB_PUBLICATION_DATE: String = "webPublicationDate"
+    const val JSON_KEY_WEB_URL: String = "webUrl"
+    const val JSON_KEY_TAGS: String = "tags"
+    const val JSON_KEY_FIELDS: String = "fields"
+    const val JSON_KEY_THUMBNAIL: String = "thumbnail"
+    const val JSON_KEY_TRAIL_TEXT: String = "trailText"
 
     /**
-     * Create a private constructor because no one should ever create a {@link Constants} object.
+     * Read timeout for setting up the HTTP request
      */
-    private Constants() {
-    }
+    const val READ_TIMEOUT: Int = 10000 /* milliseconds */
 
-    /**  Extract the key associated with the JSONObject */
-    static final String JSON_KEY_RESPONSE = "response";
-    static final String JSON_KEY_RESULTS = "results";
-    static final String JSON_KEY_WEB_TITLE = "webTitle";
-    static final String JSON_KEY_SECTION_NAME = "sectionName";
-    static final String JSON_KEY_WEB_PUBLICATION_DATE = "webPublicationDate";
-    static final String JSON_KEY_WEB_URL = "webUrl";
-    static final String JSON_KEY_TAGS = "tags";
-    static final String JSON_KEY_FIELDS = "fields";
-    static final String JSON_KEY_THUMBNAIL = "thumbnail";
-    static final String JSON_KEY_TRAIL_TEXT = "trailText";
+    /**
+     * Connect timeout for setting up the HTTP request
+     */
+    const val CONNECT_TIMEOUT: Int = 15000 /* milliseconds */
 
-    /** Read timeout for setting up the HTTP request */
-    static final int READ_TIMEOUT = 10000; /* milliseconds */
+    /**
+     * HTTP response code when the request is successful
+     */
+    const val SUCCESS_RESPONSE_CODE: Int = 200
 
-    /** Connect timeout for setting up the HTTP request */
-    static final int CONNECT_TIMEOUT = 15000; /* milliseconds */
+    /**
+     * Request method type "GET" for reading information from the server
+     */
+    const val REQUEST_METHOD_GET: String = "GET"
 
-    /** HTTP response code when the request is successful */
-    static final int SUCCESS_RESPONSE_CODE = 200;
+    /**
+     * URL for news data from the guardian data set
+     */
+    const val NEWS_REQUEST_URL: String = "https://content.guardianapis.com/search"
 
-    /** Request method type "GET" for reading information from the server */
-    static final String REQUEST_METHOD_GET = "GET";
+    /**
+     * Parameters
+     */
+    const val QUERY_PARAM: String = "q"
+    const val ORDER_BY_PARAM: String = "order-by"
+    const val PAGE_SIZE_PARAM: String = "page-size"
+    const val ORDER_DATE_PARAM: String = "order-date"
+    const val FROM_DATE_PARAM: String = "from-date"
+    const val SHOW_FIELDS_PARAM: String = "show-fields"
+    const val FORMAT_PARAM: String = "format"
+    const val SHOW_TAGS_PARAM: String = "show-tags"
+    const val API_KEY_PARAM: String = "api-key"
+    const val SECTION_PARAM: String = "section"
 
-    /** URL for news data from the guardian data set */
-    public static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search";
+    /**
+     * The show fields we want our API to return
+     */
+    const val SHOW_FIELDS: String = "thumbnail,trailText"
 
-    /** Parameters */
-    public static final String QUERY_PARAM = "q";
-    public static final String ORDER_BY_PARAM = "order-by";
-    public static final String PAGE_SIZE_PARAM = "page-size";
-    public static final String ORDER_DATE_PARAM = "order-date";
-    public static final String FROM_DATE_PARAM = "from-date";
-    public static final String SHOW_FIELDS_PARAM = "show-fields";
-    public static final String FORMAT_PARAM = "format";
-    public static final String SHOW_TAGS_PARAM = "show-tags";
-    public static final String API_KEY_PARAM = "api-key";
-    public static final String SECTION_PARAM = "section";
+    /**
+     * The format we want our API to return
+     */
+    const val FORMAT: String = "json"
 
-    /** The show fields we want our API to return */
-    public static final String SHOW_FIELDS = "thumbnail,trailText";
+    /**
+     * The show tags we want our API to return
+     */
+    const val SHOW_TAGS: String = "contributor"
 
-    /** The format we want our API to return */
-    public static final String FORMAT = "json";
+    /**
+     * API Key
+     */
+    const val API_KEY: String = "test" // Use your API Key when API rate limit exceeded
 
-    /** The show tags we want our API to return */
-    public static final String SHOW_TAGS = "contributor";
+    /**
+     * Default number to set the image on the top of the textView
+     */
+    const val DEFAULT_NUMBER: Int = 0
 
-    /** API Key */
-    public static final String API_KEY = "test"; // Use your API Key when API rate limit exceeded
-
-    /** Default number to set the image on the top of the textView */
-    public static final int DEFAULT_NUMBER = 0;
-
-    /** Constants value for each fragment */
-    public static final int HOME = 0;
-    public static final int WORLD = 1;
-    public static final int SCIENCE = 2;
-    public static final int SPORT = 3;
-    public static final int ENVIRONMENT = 4;
-    public static final int SOCIETY = 5;
-    public static final int FASHION = 6;
-    public static final int BUSINESS = 7;
-    public static final int CULTURE = 8;
-
+    /**
+     * Constants value for each fragment
+     */
+    const val HOME: Int = 0
+    const val WORLD: Int = 1
+    const val SCIENCE: Int = 2
+    const val SPORT: Int = 3
+    const val ENVIRONMENT: Int = 4
+    const val SOCIETY: Int = 5
+    const val FASHION: Int = 6
+    const val BUSINESS: Int = 7
+    const val CULTURE: Int = 8
 }

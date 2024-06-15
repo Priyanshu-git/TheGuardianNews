@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -28,7 +29,7 @@ import kotlinx.coroutines.launch
 open class BaseArticlesFragment : Fragment() {
     private lateinit var mAdapter: NewsAdapter
     private lateinit var mEmptyStateTextView: TextView
-    private lateinit var mLoadingIndicator: View
+    private lateinit var mLoadingIndicator: ProgressBar
     private lateinit var mSwipeRefreshLayout: SwipeRefreshLayout
 
     val viewModel: NewsViewModel by viewModels { ViewModelFactory() }
