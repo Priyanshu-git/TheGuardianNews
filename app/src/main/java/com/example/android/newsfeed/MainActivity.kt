@@ -1,147 +1,92 @@
-/*
- * MIT License
- *
- * Copyright (c) 2018 Soojeong Shin
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
+package com.example.android.newsfeed
 
-package com.example.android.newsfeed;
+import android.content.Intent
+import android.os.Bundle
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
+import androidx.core.view.GravityCompat
+import androidx.viewpager.widget.ViewPager
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
+import com.example.android.newsfeed.adapter.CategoryFragmentPagerAdapter
+import com.example.android.newsfeed.utils.Constants
 
-import android.content.Intent;
-import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabLayout;
-import androidx.core.view.GravityCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-import com.example.android.newsfeed.adapter.CategoryFragmentPagerAdapter;
-import com.example.android.newsfeed.utils.Constants;
+    private lateinit var viewPager: ViewPager
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-    private ViewPager viewPager;
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
+        val toggle = ActionBarDrawerToggle(
+            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+        drawer.addDrawerListener(toggle)
+        toggle.syncState()
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        viewPager = findViewById(R.id.viewpager)
 
-        // Find the view pager that will allow the user to swipe between fragments
-        viewPager = findViewById(R.id.viewpager);
+        val tabLayout: TabLayout = findViewById(R.id.sliding_tabs)
+        tabLayout.setupWithViewPager(viewPager)
+        tabLayout.tabGravity = TabLayout.GRAVITY_FILL
 
-        // Give the TabLayout the ViewPager
-        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        // Set gravity for tab bar
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        assert navigationView != null;
-        navigationView.setNavigationItemSelectedListener(this);
+        onNavigationItemSelected(navigationView.menu.getItem(0).setChecked(true))
 
-        // Set the default fragment when starting the app
-        onNavigationItemSelected(navigationView.getMenu().getItem(0).setChecked(true));
-
-        // Set category fragment pager adapter
-        CategoryFragmentPagerAdapter pagerAdapter =
-                new CategoryFragmentPagerAdapter(this, getSupportFragmentManager());
-        // Set the pager adapter onto the view pager
-        viewPager.setAdapter(pagerAdapter);
+        val pagerAdapter = CategoryFragmentPagerAdapter(this, supportFragmentManager)
+        viewPager.adapter = pagerAdapter
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+    override fun onBackPressed() {
+        val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed();
+            super.onBackPressed()
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        // Switch Fragments in a ViewPager on clicking items in Navigation Drawer
-        if (id == R.id.nav_home) {
-            viewPager.setCurrentItem(Constants.HOME);
-        } else if (id == R.id.nav_world) {
-            viewPager.setCurrentItem(Constants.WORLD);
-        } else if (id == R.id.nav_science) {
-            viewPager.setCurrentItem(Constants.SCIENCE);
-        } else if (id == R.id.nav_sport) {
-            viewPager.setCurrentItem(Constants.SPORT);
-        } else if (id == R.id.nav_environment) {
-            viewPager.setCurrentItem(Constants.ENVIRONMENT);
-        } else if (id == R.id.nav_society) {
-            viewPager.setCurrentItem(Constants.SOCIETY);
-        } else if (id == R.id.nav_fashion) {
-            viewPager.setCurrentItem(Constants.FASHION);
-        } else if (id == R.id.nav_business) {
-            viewPager.setCurrentItem(Constants.BUSINESS);
-        } else if (id == R.id.nav_culture) {
-            viewPager.setCurrentItem(Constants.CULTURE);
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_home -> viewPager.currentItem = Constants.HOME
+            R.id.nav_world -> viewPager.currentItem = Constants.WORLD
+            R.id.nav_science -> viewPager.currentItem = Constants.SCIENCE
+            R.id.nav_sport -> viewPager.currentItem = Constants.SPORT
+            R.id.nav_environment -> viewPager.currentItem = Constants.ENVIRONMENT
+            R.id.nav_society -> viewPager.currentItem = Constants.SOCIETY
+            R.id.nav_fashion -> viewPager.currentItem = Constants.FASHION
+            R.id.nav_business -> viewPager.currentItem = Constants.BUSINESS
+            R.id.nav_culture -> viewPager.currentItem = Constants.CULTURE
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
+        drawer.closeDrawer(GravityCompat.START)
+        return true
     }
 
-    @Override
-    // Initialize the contents of the Activity's options menu
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the Options Menu we specified in XML
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
     }
 
-    @Override
-    // This method is called whenever an item in the options menu is selected.
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Intent settingsIntent = new Intent(this, SettingsActivity.class);
-            startActivity(settingsIntent);
-            return true;
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.action_settings) {
+            val settingsIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(settingsIntent)
+            true
+        } else {
+            super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item);
     }
-
 }
