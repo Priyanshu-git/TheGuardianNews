@@ -84,7 +84,7 @@
     <style name="TitleTextViewStyle">
         <item name="android:paddingBottom">@dimen/padding_bottom_4</item>
         <item name="android:paddingTop">@dimen/padding</item>
-        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="font">@string/guardian</item>
         <item name="android:paddingLeft">@dimen/padding</item>
         <item name="android:paddingRight">@dimen/padding</item>
     </style>
@@ -95,7 +95,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/layout_margin</item>
         <item name="android:layout_marginRight">@dimen/layout_margin</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="font">@font/guardiansans_regular</item>
     </style>
 
     <!-- Style for section TextView -->
@@ -111,7 +111,7 @@
         <item name="android:layout_marginLeft">@dimen/layout_margin</item>
         <item name="android:layout_marginRight">@dimen/layout_margin</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="font">@font/guardiansans_regular</item>
         <item name="android:maxLines">6</item>
         <item name="android:textColor">@color/color_trail_text</item>
     </style>
@@ -119,7 +119,6 @@
     <!-- Style for Author TextView -->
     <style name="AuthorTextViewStyle" parent="@style/SectionAuthorDateStyle">
         <item name="android:textColor">@color/color_author</item>
-        <item name="android:textStyle">italic</item>
     </style>
 
     <!-- Style for Date TextView -->

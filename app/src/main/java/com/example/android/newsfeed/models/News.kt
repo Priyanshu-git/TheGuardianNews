@@ -1,4 +1,4 @@
-package com.example.android.newsfeed
+package com.example.android.newsfeed.models
 
 class News(
     val title: String,

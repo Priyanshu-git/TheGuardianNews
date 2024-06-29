@@ -16,9 +16,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/guardian_reg"
+        android:fontFamily="@font/guardian_title_bold"
         android:text="@string/the"
-        android:textSize="45sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:textColor="#BFFFFFFF"/>
 
@@ -26,10 +26,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/guardian_reg"
+        android:fontFamily="@font/guardian_title_bold"
         android:text="@string/guardian"
-        android:textSize="45sp"
+        android:textSize="40sp"
         android:textStyle="bold"
+        android:layout_marginStart="2dp"
         android:textColor="#F2FFFFFF"/>
 
 </LinearLayout>

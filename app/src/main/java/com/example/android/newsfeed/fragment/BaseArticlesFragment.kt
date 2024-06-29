@@ -16,7 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.android.newsfeed.EmptyRecyclerView
-import com.example.android.newsfeed.News
+import com.example.android.newsfeed.models.News
 import com.example.android.newsfeed.NewsPreferences
 import com.example.android.newsfeed.R
 import com.example.android.newsfeed.adapter.NewsAdapter

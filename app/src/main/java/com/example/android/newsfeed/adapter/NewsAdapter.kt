@@ -17,7 +17,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.android.newsfeed.News
+import com.example.android.newsfeed.models.News
 import com.example.android.newsfeed.R
 import java.text.SimpleDateFormat
 import java.util.*
